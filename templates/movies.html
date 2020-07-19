@@ -1,0 +1,22 @@
+<table class="table table-striped table-sm">
+    <thead>
+      <tr>
+        <th>
+        <th style="background-color:yellow">Title</th>
+        <th style="background-color:yellow">Genres</th>
+        <th style="background-color:yellow">Budget</th>  
+      </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for value in movieslist%}
+      <tr>
+        <th>
+          <th>{{ value[17] }}</th> 
+          <th>{{ value[1] }}</th> 
+          <th>{{ value[0] }}</th>        
+        </th>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
