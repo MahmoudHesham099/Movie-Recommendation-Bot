@@ -2,9 +2,7 @@
     <thead>
       <tr>
         <th>
-        <th style="background-color:yellow">Title</th>
-        <th style="background-color:yellow">Genres</th>
-        <th style="background-color:yellow">Budget</th>  
+        <th style="background-color:yellow">Movies</th> 
       </th>
       </tr>
     </thead>
@@ -12,9 +10,7 @@
       {% for value in movieslist%}
       <tr>
         <th>
-          <th>{{ value[17] }}</th> 
-          <th>{{ value[1] }}</th> 
-          <th>{{ value[0] }}</th>        
+          <th>{{ value }}</th>         
         </th>
       </tr>
       {% endfor %}
