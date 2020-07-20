@@ -62,7 +62,7 @@ indices = pd.Series(data.index, index=data['title']).drop_duplicates()
 
 
 def get_recommendations(title):
-    index = indices['The Dark Knight Rises']
+    index = indices[title]
     # Get the pairwsie similarity scores of all movies with that movie
     simScores = list(enumerate(cosineSim[index]))
     # Sort the movies based on the similarity scores
