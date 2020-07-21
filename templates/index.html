@@ -6,9 +6,11 @@
 			  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
 			  crossorigin="anonymous">
 		</script>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}" />
 </head>
 <body>
+<!--<img src="https://www.incimages.com/uploaded_files/image/1920x1080/westworld-2-hbo-background-1920_419617.jpg" alt="Lamp" >-->
 <h1>Flask Chatbot</h1>
 <div>
 <div id = "chatbox">
@@ -17,6 +19,9 @@
 <div id = "userInput">
 <input id ="textInput" type ="text" name="msg" placeholder="Message">
 <input id = "buttonInput" type = "submit" value="Send">
+
+<button type="button" class="btn btn-info" id = "ShowBtn" data-toggle="collapse" data-target="#demo">Show!</button>
+
 </div>
     {% include 'script.html' %}
 <!--<script src ="{{url_for('.static', filename='script.html')}}"> </script>-->

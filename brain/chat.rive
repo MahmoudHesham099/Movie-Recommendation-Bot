@@ -8,21 +8,16 @@
 
 >  topic movies
 + *
-- Hi! Whats your favourite movie!? {topic=favouritemovies}
+- Whats your favourite movie!? {topic=favouritemovies}
 < topic
 
 
 
 > topic favouritemovies
 + *
-- <call>getSimilarMovies <star> </call>
+- Click on the show button to see similar movies!
 < topic
 
 
-> object getSimilarMovies python
- import flaskblog
- from flask import Flask, redirect, url_for
- redirect(url_for('getMovies',title=str(args[0])))
-< object
 
 

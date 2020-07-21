@@ -1,10 +1,17 @@
 <script>
-function getBotResponse(){
 var server = "http://127.0.0.1:5000";
+var MovieText;
+function getBotResponse(){
 var appdir ='/get';
 var rawText = $("#textInput").val();
+MovieText = rawText;
 var userHtml = '<p class = "userText"><span>' + rawText + '</span></p>';
+
+
+
 $("#textInput").val("");
+
+
 $("#chatbox").append(userHtml);
 document.getElementById('userInput').scrollIntoView({block:'start',behaviour:'smooth'});
 $.ajax({
@@ -20,6 +27,8 @@ $("#chatbox").append(botHtml);
 document.getElementById('userInput').scrollIntoView({block : 'start',behaviour:'smooth'});
 });
 }
+
+
 $("#textInput").keypress(function(e) {
 if(e.which == 13) {
 getBotResponse();
@@ -28,4 +37,30 @@ getBotResponse();
 $("#buttonInput").click(function() {
 getBotResponse();
 })
+
+
+$("#ShowBtn").click(function(e) {
+    calcMovies()
+	location.replace(server+'/showMovies')
+})
+
+
+function calcMovies(){
+
+console.log(MovieText)
+    $.ajax({
+
+  						type: "POST",
+  						url:'/getMovies',
+  						data: MovieText,
+						datatype: "html",
+						  
+  						});
+}
+
+
+
+
+
+
 </script>
