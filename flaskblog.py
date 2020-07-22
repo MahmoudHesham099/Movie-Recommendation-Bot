@@ -1,9 +1,7 @@
-from flask import Flask, render_template, request,redirect,url_for
-import csv
-import pandas as pd
-import numpy as np
+from flask import Flask, render_template, request,redirect,url_for,jsonify
+
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics.pairwise import linear_kernel
+
 from ML import RecommendModel
 import bot
 
@@ -25,10 +23,10 @@ def index():
 def getMovies(title='Zodiac'):
 
     if request.method == "POST":
-        rf = request.form
-        print(rf)
-        for key in rf.keys():
-            title = key
+        request_data = request.form.to_dict()
+        print(request_data)
+        title = request_data['Movies']
+
     print(title)
     global SavedMoviesList
     SavedMoviesList = RecommendModel.get_recommendations(title)
@@ -40,7 +38,6 @@ def getMovies(title='Zodiac'):
 def showMovies():
 
     print(SavedMoviesList)
-
     return render_template('movies.html', movieslist=SavedMoviesList)
 
 
@@ -49,20 +46,22 @@ def showMovies():
 @app.route("/get", methods=["POST"])
 def chat():
     if request.method == "POST":
-        rf = request.form
-        for key in rf.keys():
-            message = key
+        request_data = request.form.to_dict()
+        print(request_data)
+        message = request_data['message']
+        print(message)
         status, response = bot.chat(str(message))
         data = {}
 
         if status == 0:
             data["reply"] = response
             data["status"] = 'Sucess'
-            return data
+            return jsonify(data)
         else:
             data["reply"] = response
             data["status"] = 'Failed'
-            return data
+            return jsonify(data)
+
 
 
 if __name__ == '__main__' :

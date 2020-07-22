@@ -1,6 +1,14 @@
 body {
     font-family: Garamond;
 
+
+}
+
+#ShowBtn{
+    visibility : hidden;
+    margin-top:5px;
+
+
 }
 
 h1 {
