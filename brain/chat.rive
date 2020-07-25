@@ -2,19 +2,64 @@
 
 > begin
 + request
-* <get met> == undefined => <set met=true>{topic=movies}{ok}
+* <get met> == undefined => <set met=true>{topic=welcome}{ok}
 - {ok}
 < begin
 
+>  topic welcome
++ *
+- Hi what is your username? {topic=username}
+- {ok}
+< topic
+
+> topic username
++ *
+- <set username=<star>><call>getUsername <star></call>
+< topic
+
+> topic password
++ *
+- <call>getpass <star> <get username></call>
+< topic
+
+> object getUsername python
+  import utills
+  user = utills.getUser(str(args[0]))
+  if user:
+    return "okay can you tell me your password to save your account {topic=password}"
+  else:
+    return "Sorry You are not registered"
+< object
+
+> object getpass python
+  import utills
+  print(args)
+  user = utills.getUser(str(args[1]))
+  if user:
+    if str(args[0]) == user['password']:
+        utills.save(user['id'])
+        return "okay hello! {topic=movies}"
+  else:
+    return "Sorry You are not registered"
+< object
+
 >  topic movies
 + *
-- Whats your favourite movie!? {topic=favouritemovies}
+- Hi! Whats your favourite movie!? {topic=favouritemovies}
 < topic
 
 
 
 > topic favouritemovies
 + *
-- Click on the show button to see similar movies!
+- <call>getSimilarMovies <star> </call>
 < topic
+
+
+> object getSimilarMovies python
+ import flaskblog
+ from flask import Flask, redirect, url_for
+ redirect(url_for('getMovies',title=str(args[0])))
+< object
+
 
