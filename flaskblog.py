@@ -6,8 +6,12 @@ from ML import RecommendModel
 import bot
 
 app = Flask(__name__)
+app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = ''
+app.config['MYSQL_DB'] = 'flaskapp'
 
-
+mysql = MySQL(app)
 
 # remove stop words like the/a
 tfidf = TfidfVectorizer(stop_words='english')
