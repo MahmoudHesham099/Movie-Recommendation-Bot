@@ -11,7 +11,7 @@ app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'flaskapp'
 
-mysql = MySQL(app)
+#mysql = MySQL(app)
 
 # remove stop words like the/a
 tfidf = TfidfVectorizer(stop_words='english')
